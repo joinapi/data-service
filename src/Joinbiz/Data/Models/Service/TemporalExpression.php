@@ -3,7 +3,6 @@
 namespace Joinbiz\Data\Models\Service;
 
 use Illuminate\Database\Eloquent\Model;
-use Joinbiz\Data\Models\Workeffort\WorkEffort;
 
 /**
  * @property string $temp_expr_id
@@ -31,28 +30,28 @@ class TemporalExpression extends Model
 
     /**
      * The table associated with the model.
-     *
+     * 
      * @var string
      */
     protected $table = 'temporal_expression';
 
     /**
      * The primary key for the model.
-     *
+     * 
      * @var string
      */
     protected $primaryKey = 'temp_expr_id';
 
     /**
      * The "type" of the auto-incrementing ID.
-     *
+     * 
      * @var string
      */
     protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
-     *
+     * 
      * @var bool
      */
     public $incrementing = false;
@@ -67,7 +66,7 @@ class TemporalExpression extends Model
      */
     public function workEfforts()
     {
-        return $this->hasMany('Joinbiz\Data\Models\Service\WorkEffort', 'temp_expr_id', 'temp_expr_id');
+        return $this->hasMany('Joinbiz\Data\Models\Workeffort\WorkEffort', 'temp_expr_id', 'temp_expr_id');
     }
 
     /**

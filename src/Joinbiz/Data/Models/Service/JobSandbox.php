@@ -48,28 +48,28 @@ class JobSandbox extends Model
 
     /**
      * The table associated with the model.
-     *
+     * 
      * @var string
      */
     protected $table = 'job_sandbox';
 
     /**
      * The primary key for the model.
-     *
+     * 
      * @var string
      */
     protected $primaryKey = 'job_id';
 
     /**
      * The "type" of the auto-incrementing ID.
-     *
+     * 
      * @var string
      */
     protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
-     *
+     * 
      * @var bool
      */
     public $incrementing = false;
@@ -84,7 +84,7 @@ class JobSandbox extends Model
      */
     public function userLoginByAuthUserLoginId()
     {
-        return $this->belongsTo('Joinbiz\Data\Models\Service\UserLogin', 'auth_user_login_id', 'user_login_id');
+        return $this->belongsTo('Joinbiz\Data\Models\Security\UserLogin', 'auth_user_login_id', 'user_login_id');
     }
 
     /**
@@ -108,7 +108,7 @@ class JobSandbox extends Model
      */
     public function statusItem()
     {
-        return $this->belongsTo('Joinbiz\Data\Models\Service\StatusItem', 'status_id', 'status_id');
+        return $this->belongsTo('Joinbiz\Data\Models\Common\StatusItem', 'status_id', 'status_id');
     }
 
     /**
@@ -124,7 +124,7 @@ class JobSandbox extends Model
      */
     public function userLoginByRunAsUser()
     {
-        return $this->belongsTo('Joinbiz\Data\Models\Service\UserLogin', 'run_as_user', 'user_login_id');
+        return $this->belongsTo('Joinbiz\Data\Models\Security\UserLogin', 'run_as_user', 'user_login_id');
     }
 
     /**
@@ -132,6 +132,6 @@ class JobSandbox extends Model
      */
     public function productGroupOrders()
     {
-        return $this->hasMany('Joinbiz\Data\Models\Service\ProductGroupOrder', 'job_id', 'job_id');
+        return $this->hasMany('Joinbiz\Data\Models\Product\ProductGroupOrder', 'job_id', 'job_id');
     }
 }

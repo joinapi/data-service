@@ -27,7 +27,7 @@ class JobManagerLock extends Model
 
     /**
      * The table associated with the model.
-     *
+     * 
      * @var string
      */
     protected $table = 'job_manager_lock';
@@ -42,6 +42,6 @@ class JobManagerLock extends Model
      */
     public function enumerationByReasonEnumId()
     {
-        return $this->belongsTo('Joinbiz\Data\Models\Service\Enumeration', 'reason_enum_id', 'enum_id');
+        return $this->belongsTo('Joinbiz\Data\Models\Common\Enumeration', 'reason_enum_id', 'enum_id');
     }
 }

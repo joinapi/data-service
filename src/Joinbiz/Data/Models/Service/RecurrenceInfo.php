@@ -3,10 +3,6 @@
 namespace Joinbiz\Data\Models\Service;
 
 use Illuminate\Database\Eloquent\Model;
-use Joinbiz\Data\Models\Accounting\Invoice;
-use Joinbiz\Data\Models\Order\ShoppingList;
-use Joinbiz\Data\Models\Product\ProductAssoc;
-use Joinbiz\Data\Models\Workeffort\WorkEffort;
 
 /**
  * @property string $recurrence_info_id
@@ -20,13 +16,13 @@ use Joinbiz\Data\Models\Workeffort\WorkEffort;
  * @property string $last_updated_tx_stamp
  * @property string $created_stamp
  * @property string $created_tx_stamp
- * @property ProductAssoc[] $productAssocs
  * @property WorkEffort[] $workEfforts
+ * @property Invoice[] $invoices
+ * @property ProductAssoc[] $productAssocs
  * @property JobSandbox[] $jobSandboxes
  * @property RecurrenceRule $recurrenceRuleByExceptionRuleId
  * @property RecurrenceRule $recurrenceRule
  * @property ShoppingList[] $shoppingLists
- * @property Invoice[] $invoices
  */
 class RecurrenceInfo extends Model
 {
@@ -35,28 +31,28 @@ class RecurrenceInfo extends Model
 
     /**
      * The table associated with the model.
-     *
+     * 
      * @var string
      */
     protected $table = 'recurrence_info';
 
     /**
      * The primary key for the model.
-     *
+     * 
      * @var string
      */
     protected $primaryKey = 'recurrence_info_id';
 
     /**
      * The "type" of the auto-incrementing ID.
-     *
+     * 
      * @var string
      */
     protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
-     *
+     * 
      * @var bool
      */
     public $incrementing = false;
@@ -69,17 +65,25 @@ class RecurrenceInfo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productAssocs()
+    public function workEfforts()
     {
-        return $this->hasMany('Joinbiz\Data\Models\Service\ProductAssoc', 'recurrence_info_id', 'recurrence_info_id');
+        return $this->hasMany('Joinbiz\Data\Models\Workeffort\WorkEffort', 'recurrence_info_id', 'recurrence_info_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function workEfforts()
+    public function invoices()
     {
-        return $this->hasMany('Joinbiz\Data\Models\Service\WorkEffort', 'recurrence_info_id', 'recurrence_info_id');
+        return $this->hasMany('Joinbiz\Data\Models\Accounting\Invoice', 'recurrence_info_id', 'recurrence_info_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function productAssocs()
+    {
+        return $this->hasMany('Joinbiz\Data\Models\Product\ProductAssoc', 'recurrence_info_id', 'recurrence_info_id');
     }
 
     /**
@@ -111,14 +115,6 @@ class RecurrenceInfo extends Model
      */
     public function shoppingLists()
     {
-        return $this->hasMany('Joinbiz\Data\Models\Service\ShoppingList', 'recurrence_info_id', 'recurrence_info_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function invoices()
-    {
-        return $this->hasMany('Joinbiz\Data\Models\Service\Invoice', 'recurrence_info_id', 'recurrence_info_id');
+        return $this->hasMany('Joinbiz\Data\Models\Order\ShoppingList', 'recurrence_info_id', 'recurrence_info_id');
     }
 }
